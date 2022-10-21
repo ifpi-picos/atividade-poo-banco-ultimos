@@ -41,14 +41,14 @@ public class Banco {
         String numeroEndereco = JOptionPane.showInputDialog("número:");
         String cepEndereco = JOptionPane.showInputDialog("cep:");
         Endereco newEndereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco);
-        Cliente newCliente = new Cliente(nomeCliente, cpfCliente);
+        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, newEndereco);
         clientes.add(newCliente);
         enderecos.add(newEndereco);
     }
     private static void mostrarInformacoesClientes() {
         String info = "";
         for (Cliente cliente : clientes) {
-            info = info + cliente.getNome() + " cpf: " + cliente.getCpf() + "\nEndereço:" + cliente.getEndereco();
+            info = info + "  -Informações pessoais-\n\nnome: " +cliente.getNome() + "\ncpf:      " + cliente.getCpf() + "\n\n  -Endereço-\n\nEstado:     " + cliente.getEndereco().getEstado() + "\nCidade:     " + cliente.getEndereco().getCidade() + "\nBairro:      " + cliente.getEndereco().getBairro() +  "\nRua:          " + cliente.getEndereco().getRua() + "\nNúmero:  " + cliente.getEndereco().getNumero() + "\nCep:          " + cliente.getEndereco().getCep() + "\n----------------------------------------------\n\n";
         }
         JOptionPane.showMessageDialog(null, info, "Clientes", JOptionPane.PLAIN_MESSAGE);
     }

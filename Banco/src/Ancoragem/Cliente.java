@@ -8,9 +8,10 @@ public class Cliente {
     private Date dataNascimento;
     private Endereco endereco;
 
-    public Cliente(String nome, String cpf) {
+    public Cliente(String nome, String cpf, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
+        this.endereco = endereco;
     }
     public String getNome() {
         return this.nome;
