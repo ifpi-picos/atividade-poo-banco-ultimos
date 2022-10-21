@@ -35,8 +35,4 @@ public class Endereco {
     public String getEstado() {
         return this.estado;
     }
-
-    public static void enderecoAlocado() {
-        System.out.format("Cep: %s \nNúmero: %s \nRua: %s \nBairro: %s \nCidade: %s \nEstado: %s", cep, numero, rua, bairro, cidade, estado);
-    }
 }

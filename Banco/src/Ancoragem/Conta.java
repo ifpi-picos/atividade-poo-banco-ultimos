@@ -1,8 +1,7 @@
 package Ancoragem;
 
 public class Conta {
-    private int agencia;
-    private int numero;
+    private int id;
     private double saldo;
 
     void mostrarSaldo() {

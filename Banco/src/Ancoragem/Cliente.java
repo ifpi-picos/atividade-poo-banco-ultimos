@@ -21,8 +21,6 @@ public class Cliente {
     public Date getDataNascimento() {
         return this.dataNascimento;
     }
-    public String getEndereco() {
-        return this.endereco;
-    }
+    public Endereco getEndereco() {return this.endereco;}
 }
 

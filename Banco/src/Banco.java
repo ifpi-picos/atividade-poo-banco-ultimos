@@ -28,28 +28,27 @@ public class Banco {
     }
     private static int mostrarMenu(List<Integer> opcoes) {
         Object[] optionsArray = opcoes.toArray();
-        int opcaoEscolhida = JOptionPane.showOptionDialog(null, "1. cadastrar cliente \n2. lista de clientes \n3. finalizar programa \n \n \nOpções:z", "Banco -alpha test-", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, optionsArray, null);
+        int opcaoEscolhida = JOptionPane.showOptionDialog(null, "1. cadastrar cliente \n2. lista de clientes \n3. finalizar programa \n \n \nOpções:", "Banco -alpha test-", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, optionsArray, null);
         return opcaoEscolhida;
     }
     private static void cadastrarCliente() {
         String nomeCliente = JOptionPane.showInputDialog("nome:");
         String cpfCliente = JOptionPane.showInputDialog("cpf:");
-        JOptionPane.showMessageDialog(null, "agora cadastro o seu endereço.");
-        String cepEndereco = JOptionPane.showInputDialog("cep:");
-        String numeroEndereco = JOptionPane.showInputDialog("número:");
-        String ruaEndereco = JOptionPane.showInputDialog("rua:");
-        String bairroEndereco = JOptionPane.showInputDialog("bairro:");
-        String cidadeEndereco = JOptionPane.showInputDialog("cidade:");
         String estadoEndereco = JOptionPane.showInputDialog("estado:");
+        String cidadeEndereco = JOptionPane.showInputDialog("cidade:");
+        String bairroEndereco = JOptionPane.showInputDialog("bairro:");
+        String ruaEndereco = JOptionPane.showInputDialog("rua:");
+        String numeroEndereco = JOptionPane.showInputDialog("número:");
+        String cepEndereco = JOptionPane.showInputDialog("cep:");
         Endereco newEndereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco);
-        Endereco.enderecoAlocado();
         Cliente newCliente = new Cliente(nomeCliente, cpfCliente);
         clientes.add(newCliente);
+        enderecos.add(newEndereco);
     }
     private static void mostrarInformacoesClientes() {
         String info = "";
         for (Cliente cliente : clientes) {
-            info = info + cliente.getNome() + " cpf: " + cliente.getCpf() + "\n";
+            info = info + cliente.getNome() + " cpf: " + cliente.getCpf() + "\nEndereço:" + cliente.getEndereco();
         }
         JOptionPane.showMessageDialog(null, info, "Clientes", JOptionPane.PLAIN_MESSAGE);
     }
