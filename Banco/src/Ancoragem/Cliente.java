@@ -1,5 +1,6 @@
 package Ancoragem;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 public class Cliente {
@@ -8,12 +9,16 @@ public class Cliente {
     private String nome;
     private Date dataNascimento;
     private Endereco endereco;
+    private String senha;
+    private List<Conta> contas = new ArrayList<>();
 
-    public Cliente(String nome, String cpf, int idCliente, Endereco endereco) {
+
+    public Cliente(String nome, String cpf, int idCliente, Endereco endereco, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.idCliente = idCliente;
         this.endereco = endereco;
+        this.senha = senha;
     }
 
     public String getNome() {
@@ -25,7 +30,7 @@ public class Cliente {
     public int getIdCliente() {
         return this.idCliente;
     }
-
+    public Endereco getEndereco() {return this.endereco;}
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
@@ -36,6 +41,8 @@ public class Cliente {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    public Endereco getEndereco() {return this.endereco;}
+    public String getSenha() {
+        return senha;
+    }
 }
 

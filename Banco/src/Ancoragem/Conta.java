@@ -10,11 +10,14 @@ public class Conta {
     public double getSaldo() {
         return this.saldo;
     }
+    public void setSaldo() {
+        this.saldo = saldo;
+    }
     public int getNumAgencia() {
         return this.numAgencia;
     }
-    public void setSaldo() {
-        this.saldo = saldo;
+    public String getTipo() {
+        return this.Tipo;
     }
 
 
