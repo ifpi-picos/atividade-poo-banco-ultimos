@@ -8,17 +8,29 @@ public class Cliente {
     private int idCliente;
     private String nome;
     private Date dataNascimento;
-    private Endereco endereco;
     private String senha;
     private List<Conta> contas = new ArrayList<>();
+    private String cep;
+    private String numero;
+    private String rua;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String endId;
 
 
-    public Cliente(String nome, String cpf, int idCliente, Endereco endereco, String senha) {
+    public Cliente(String nome, String cpf, int idCliente, String senha, String cep, String numero, String rua, String bairro, String cidade, String estado, String endId) {
         this.nome = nome;
         this.cpf = cpf;
         this.idCliente = idCliente;
-        this.endereco = endereco;
         this.senha = senha;
+        this.cep = cep;
+        this.numero = numero;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.endId = endId;
     }
 
     public String getNome() {
@@ -30,7 +42,6 @@ public class Cliente {
     public int getIdCliente() {
         return this.idCliente;
     }
-    public Endereco getEndereco() {return this.endereco;}
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
@@ -43,6 +54,28 @@ public class Cliente {
     }
     public String getSenha() {
         return senha;
+    }
+    public String getCep() {
+        return this.cep;
+    }
+    public String getNumero() {
+        return this.numero;
+    }
+    public String getRua() {
+        return this.rua;
+    }
+    public String getBairro() {
+        return this.bairro;
+    }
+    public String getCidade() {
+        return this.cidade;
+    }
+    public String getEstado() {
+        return this.estado;
+    }
+    public String getEndId() {return this.endId;}
+    public void setEndId(String endId) {
+        this.endId = endId;
     }
 }
 
