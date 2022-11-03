@@ -2,14 +2,13 @@ package Ancoragem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-
+    // Atributos
 public class Cliente {
     private final String cpf;
     private int idCliente;
     private String nome;
     private Date dataNascimento;
     private String senha;
-    private List<Conta> contas = new ArrayList<>();
     private String cep;
     private String numero;
     private String rua;
@@ -17,9 +16,12 @@ public class Cliente {
     private String cidade;
     private String estado;
     private String endId;
+    private List<Conta> contas = new ArrayList<>();
+    private List<ContaCorrente> contasCorrente = new ArrayList<>();
+    private List<ContaPoupança> contasPoupança = new ArrayList<>();
 
-
-    public Cliente(String nome, String cpf, int idCliente, String senha, String cep, String numero, String rua, String bairro, String cidade, String estado, String endId) {
+    // constructor de Cliente
+    public Cliente(String nome, String cpf, int idCliente, String senha, String cep, String numero, String rua, String bairro, String cidade, String estado, String endId, Date dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.idCliente = idCliente;
@@ -31,8 +33,9 @@ public class Cliente {
         this.cidade = cidade;
         this.estado = estado;
         this.endId = endId;
+        this.dataNascimento = dataNascimento;
     }
-
+    // gets e sets
     public String getNome() {
         return this.nome;
     }
@@ -42,40 +45,23 @@ public class Cliente {
     public int getIdCliente() {
         return this.idCliente;
     }
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Date getDataNascimento() {
-        return this.dataNascimento;
-    }
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public String getCep() {
-        return this.cep;
-    }
-    public String getNumero() {
-        return this.numero;
-    }
-    public String getRua() {
-        return this.rua;
-    }
-    public String getBairro() {
-        return this.bairro;
-    }
-    public String getCidade() {
-        return this.cidade;
-    }
-    public String getEstado() {
-        return this.estado;
-    }
+    public void setIdCliente(int idCliente) {this.idCliente = idCliente;}
+    public Date getDataNascimento() {return this.dataNascimento;}
+    public void setDataNascimento(Date dataNascimento) {this.dataNascimento = dataNascimento;}
+    public String getSenha() {return senha;}
+    public String getCep() {return this.cep;}
+    public String getNumero() {return this.numero;}
+    public String getRua() {return this.rua;}
+    public String getBairro() {return this.bairro;}
+    public String getCidade() {return this.cidade;}
+    public String getEstado() {return this.estado;}
     public String getEndId() {return this.endId;}
-    public void setEndId(String endId) {
-        this.endId = endId;
-    }
+    public void setEndId(String endId) {this.endId = endId;}
+    public List<Conta> getContas() {return this.contas;}
+    public List<ContaCorrente> getContasCorrente() {return this.contasCorrente;}
+    public List<ContaPoupança> getContasPoupança() {return this.contasPoupança;}
+    public void addConta(Conta conta) {this.contas.add(conta);}
+    public void addContaCorrente(ContaCorrente contaCorrente) {this.contasCorrente.add(contaCorrente);}
+    public void addContaPoupança(ContaPoupança contaPoupança) {this.contasPoupança.add(contaPoupança);}
 }
 
