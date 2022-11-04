@@ -15,10 +15,12 @@ public class Banco {
     public static int numid = 0;
     // Listas
     static List<Cliente> clientes = new ArrayList<>();
+
     // Métodos
     public static void incrementoIdCliente() {
         numid++;
     }
+
     // Opções (ações de interação na interface)
     public static void main(String[] args) throws Exception {
         List<Integer> opcoes = new ArrayList<>();
@@ -41,6 +43,7 @@ public class Banco {
         }
 
     }
+
     public static void contaCarlos() throws ParseException {
 
         Random cIdConta = new Random();
@@ -70,6 +73,7 @@ public class Banco {
         incrementoIdCliente();
 
     }
+
     public static void contaArmando() throws ParseException {
         Random cIdConta = new Random();
         int idConta = cIdConta.nextInt(9999);
@@ -99,12 +103,13 @@ public class Banco {
     }
 
     // amostragem de menu (automático)
-        private static int mostrarMenu(List<Integer> opcoes) {
+    private static int mostrarMenu(List<Integer> opcoes) {
 
-            Object[] optionsArray = opcoes.toArray();
-            int opcaoEscolhida = JOptionPane.showOptionDialog(null, "1. cadastrar cliente \n2. Login \n3. finalizar programa \n \n \nOpções:", "Banco -alpha test-", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, optionsArray, null);
-            return opcaoEscolhida;
-        }
+        Object[] optionsArray = opcoes.toArray();
+        int opcaoEscolhida = JOptionPane.showOptionDialog(null, "1. cadastrar cliente \n2. Login \n3. finalizar programa \n \n \nOpções:", "Banco -alpha test-", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, optionsArray, null);
+        return opcaoEscolhida;
+    }
+
     // cadastro de cliente (opção 1)
     private static void cadastrarCliente() throws ParseException {
         Random cIdConta = new Random();
@@ -134,6 +139,7 @@ public class Banco {
         incrementoIdCliente();
         JOptionPane.showMessageDialog(null, "Uma conta corrente foi automaticamente gerada. \n\nId da conta: " + idConta + "\nAgência:      1\nSaldo:           R$0,00\n\n\n");
     }
+
     // Login
     public static void login() {
 
@@ -176,7 +182,7 @@ public class Banco {
                             java.lang.Object[] menuContas = options.toArray();
                             int optionSelected = 0;
                             while (optionSelected != 2) {
-                                optionSelected = JOptionPane.showOptionDialog(null,"1. Acessar conta (" + cliente.getContas().size() + ")\n2. Criar nova conta \n3. Sair do menu contas \n\n", "Contas: " + cliente.getNome(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuContas, null);
+                                optionSelected = JOptionPane.showOptionDialog(null, "1. Acessar conta (" + cliente.getContas().size() + ")\n2. Criar nova conta \n3. Sair do menu contas \n\n", "Contas: " + cliente.getNome(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuContas, null);
 
                                 if (optionSelected == 0) {
 
@@ -189,38 +195,30 @@ public class Banco {
                                     }
 
                                     java.lang.Object[] acoesConta = opcoes.toArray();
-                                    int contaEscolhida = JOptionPane.showOptionDialog(null,"escolha uma conta: \n" + info + "\n\n", "Contas", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, acoesConta, null);
+                                    int contaEscolhida = JOptionPane.showOptionDialog(null, "escolha uma conta: \n" + info + "\n\n", "Contas", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, acoesConta, null);
                                     int numeroConta = opcoes.get(contaEscolhida);
 
                                     for (Conta conta : cliente.getContas()) {
                                         if (numeroConta == conta.getIdConta()) {
-                                            if ("Corrente".equals(conta.getTipo())) {
 
-                                                List<Integer> menuDeAçõesCorrente = new ArrayList<>();
-                                                menuDeAçõesCorrente.add(1);
-                                                menuDeAçõesCorrente.add(2);
-                                                menuDeAçõesCorrente.add(3);
-                                                menuDeAçõesCorrente.add(4);
+                                            List<Integer> menuDeAções = new ArrayList<>();
+                                            menuDeAções.add(1);
+                                            menuDeAções.add(2);
+                                            menuDeAções.add(3);
+                                            menuDeAções.add(4);
 
-                                                int itemCorrenteSelecionado = 1;
-                                                while (menuDeAçõesCorrente.get(itemCorrenteSelecionado) != 4) {
-                                                    itemCorrenteSelecionado = menusDeAçõesCorrente(menuDeAçõesCorrente);
-                                                    if (menuDeAçõesCorrente.get(itemCorrenteSelecionado) == 1) {
-                                                        depositar(usercpf, numeroConta);
-                                                    }
-                                                }
-                                            } else if ("Poupança".equals(conta.getTipo())) {
-                                                List<Integer> menuDeAçõesPoupança = new ArrayList<>();
-                                                menuDeAçõesPoupança.add(1);
-                                                menuDeAçõesPoupança.add(2);
-
-                                                int itemPoupançaSelecionado = 0;
-                                                while (menuDeAçõesPoupança.get(itemPoupançaSelecionado) != 2) {
-                                                    itemPoupançaSelecionado = menusDeAçõesPoupança(menuDeAçõesPoupança);
-                                                    if (menuDeAçõesPoupança.get(itemPoupançaSelecionado) == 1) {
-                                                    }
+                                            int itemSelecionado = 1;
+                                            while (menuDeAções.get(itemSelecionado) != 4) {
+                                                itemSelecionado = menusDeAções(menuDeAções);
+                                                if (menuDeAções.get(itemSelecionado) == 1) {
+                                                    depositar(usercpf, numeroConta);
+                                                } else if (menuDeAções.get(itemSelecionado) == 2) {
+                                                    sacar(usercpf, numeroConta);
+                                                } else if (menuDeAções.get(itemSelecionado) == 3) {
+                                                    transferir(usercpf, numeroConta);
                                                 }
                                             }
+
                                         }
                                     }
                                 } else if (optionSelected == 1) {
@@ -233,7 +231,7 @@ public class Banco {
                                     java.lang.Object[] criaçãoContas = optione.toArray();
                                     int optioneSelected = 0;
                                     while (optioneSelected != 2) {
-                                        optioneSelected = JOptionPane.showOptionDialog(null,"1. Conta corrente\n2. Conta Poupança\n3. Cancelar criação de conta\n\n","Criação de Conta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, criaçãoContas, null);
+                                        optioneSelected = JOptionPane.showOptionDialog(null, "1. Conta corrente\n2. Conta Poupança\n3. Cancelar criação de conta\n\n", "Criação de Conta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, criaçãoContas, null);
 
                                         if (optioneSelected == 0) {
 
@@ -268,26 +266,71 @@ public class Banco {
             JOptionPane.showMessageDialog(null, "Nenhum cliente cadastrado ainda!\ntende de novo após realizar um cadastro.");
         }
     }
-    public static int menusDeAçõesCorrente(List<Integer> menuDeAçõesCorrente) {
-        java.lang.Object[] menuAçãoCorrente = menuDeAçõesCorrente.toArray();
-        int itemSelecionado = JOptionPane.showOptionDialog(null, "Status de conta:" + "\n\n1.depositar\n2.sacar\n3.transferir\n4.Sair de menu de ação \n\n", "Ações", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuAçãoCorrente, null);
+
+    public static int menusDeAções(List<Integer> menuDeAções) {
+        java.lang.Object[] menuAção = menuDeAções.toArray();
+        int itemSelecionado = JOptionPane.showOptionDialog(null, "Status de conta:" + "\n\n1.depositar\n2.sacar\n3.transferir\n4.Sair de menu de ação \n\n", "Ações", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuAção, null);
         return itemSelecionado;
     }
-    public static int menusDeAçõesPoupança(List<Integer> menuDeAçõesPoupança) {
-        java.lang.Object[] menuAçãoPoupança = menuDeAçõesPoupança.toArray();
-        int itemSelecionado = JOptionPane.showOptionDialog(null, "Status de conta:" + "\n\n1.transferir\n2.Sair de menu de ação \n\n", "Ações", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuAçãoPoupança, null);
-        return itemSelecionado;
-    }
-    public static void depositar(String usercpf, int idConta) {
+
+    public static void depositar(String CPF, int idConta) {
         for (Cliente cliente : clientes) {
-            if (usercpf.equals(cliente.getCpf())) {
+            if (CPF.equals(cliente.getCpf())) {
                 for (Conta conta : cliente.getContas()) {
                     if (idConta == conta.getIdConta()) {
-                        ContaCorrente.depositar(usercpf, idConta, clientes);
+                        Conta.depositar(CPF, idConta, clientes);
                     }
                 }
             }
         }
     }
 
+    public static void transferir(String CPF, int idConta) {
+        for (Cliente cliente : clientes) {
+            if (CPF.equals(cliente.getCpf())) {
+                for (Conta conta : cliente.getContas()) {
+                    if (idConta == conta.getIdConta()) {
+                        conta.transferir(CPF, idConta, clientes);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void sacar(String CPF, int idConta) {
+        for (Cliente cliente : clientes) {
+            if (CPF.equals(cliente.getCpf())) {
+                for (Conta conta : cliente.getContas()) {
+                    if (idConta == conta.getIdConta()) {
+                        conta.sacar(CPF, idConta, clientes);
+                    }
+                }
+            }
+
+        }
+    }
+
+    public static void ainfo(String CPF, int idConta, List<Cliente> clientes) {
+        for (Cliente cliente : clientes) {
+            if (CPF.equals(cliente.getCpf())) {
+                for (Conta conta : cliente.getContas()) {
+                    if (idConta == conta.getIdConta()) {
+                        String info = "\nTipo: " + conta.getTipo() + "  Id: " + conta.getIdConta() + "  saldo: R$" + conta.getSaldo();
+                    }
+
+                }
+            }
+        }
+    }
+    public static void info(String CPF, int idConta) {
+        for (Cliente cliente : clientes) {
+            if (CPF.equals(cliente.getCpf())) {
+                for (Conta conta : cliente.getContas()) {
+                    if (idConta == conta.getIdConta()) {
+                        ainfo(CPF, idConta, clientes);
+                    }
+                }
+            }
+        }
+    }
 }

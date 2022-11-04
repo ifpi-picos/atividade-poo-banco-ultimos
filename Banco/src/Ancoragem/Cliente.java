@@ -4,18 +4,11 @@ import java.util.List;
 import java.util.Date;
     // Atributos
 public class Cliente {
-    private final String cpf;
+    private final String CPF;
     private int idCliente;
     private String nome;
     private Date dataNascimento;
     private String senha;
-    private String cep;
-    private String numero;
-    private String rua;
-    private String bairro;
-    private String cidade;
-    private String estado;
-    private String endId;
     private List<Endereco> enderecos = new ArrayList<>();
     private List<Conta> contas = new ArrayList<>();
     private List<ContaCorrente> contasCorrente = new ArrayList<>();
@@ -24,7 +17,7 @@ public class Cliente {
     // constructor de Cliente
     public Cliente(String nome, String cpf, int idCliente, String senha, Date dataNascimento) {
         this.nome = nome;
-        this.cpf = cpf;
+        this.CPF = cpf;
         this.idCliente = idCliente;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
@@ -34,7 +27,7 @@ public class Cliente {
         return this.nome;
     }
     public String getCpf() {
-        return this.cpf;
+        return this.CPF;
     }
     public int getIdCliente() {
         return this.idCliente;

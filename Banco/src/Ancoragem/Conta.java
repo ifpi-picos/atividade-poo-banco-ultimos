@@ -10,8 +10,8 @@ public abstract class Conta {
     private double saldo;
     private String Tipo;
 
-    public Conta(int identificadorConta, String typo) {
-        this.idConta = identificadorConta;
+    public Conta(int idConta, String typo) {
+        this.idConta = idConta;
         this.Tipo = typo;
     }
     public Conta(int numAgencia, int idConta, double saldo, String tipo) {
@@ -38,8 +38,23 @@ public abstract class Conta {
     }
     public int getIdConta() {return this.idConta;}
 
-    public abstract void trasferir(String cpf, int idConta, List<Cliente> clientes);
+    public abstract void transferir(String CPF, int idConta, List<Cliente> clientes);
 
+    public abstract void sacar(String CPF, int idConta, List<Cliente> clientes);
+
+    public static void depositar(String CPF, int idConta, List<Cliente> clientes) {
+        double deposito = Double.parseDouble(JOptionPane.showInputDialog("Valor de depósito: R$"));
+        for (Cliente cliente : clientes) {
+            if (CPF.equals(cliente.getCpf())) {
+                for (Conta conta : cliente.getContas()) {
+                    if (idConta == conta.getIdConta()) {
+                        conta.setSaldo(conta.getSaldo() + deposito);
+                        JOptionPane.showMessageDialog(null, "R$" + deposito + "  depositado! \nSaldo atual da conta: R$" + conta.getSaldo() + "\n\n");
+                    }
+                }
+            }
+        }
+    }
 }
 
 
