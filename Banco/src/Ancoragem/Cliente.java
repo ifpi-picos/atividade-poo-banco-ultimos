@@ -16,23 +16,17 @@ public class Cliente {
     private String cidade;
     private String estado;
     private String endId;
+    private List<Endereco> enderecos = new ArrayList<>();
     private List<Conta> contas = new ArrayList<>();
     private List<ContaCorrente> contasCorrente = new ArrayList<>();
     private List<ContaPoupança> contasPoupança = new ArrayList<>();
 
     // constructor de Cliente
-    public Cliente(String nome, String cpf, int idCliente, String senha, String cep, String numero, String rua, String bairro, String cidade, String estado, String endId, Date dataNascimento) {
+    public Cliente(String nome, String cpf, int idCliente, String senha, Date dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.idCliente = idCliente;
         this.senha = senha;
-        this.cep = cep;
-        this.numero = numero;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.endId = endId;
         this.dataNascimento = dataNascimento;
     }
     // gets e sets
@@ -49,19 +43,13 @@ public class Cliente {
     public Date getDataNascimento() {return this.dataNascimento;}
     public void setDataNascimento(Date dataNascimento) {this.dataNascimento = dataNascimento;}
     public String getSenha() {return senha;}
-    public String getCep() {return this.cep;}
-    public String getNumero() {return this.numero;}
-    public String getRua() {return this.rua;}
-    public String getBairro() {return this.bairro;}
-    public String getCidade() {return this.cidade;}
-    public String getEstado() {return this.estado;}
-    public String getEndId() {return this.endId;}
-    public void setEndId(String endId) {this.endId = endId;}
+    public List<Endereco> getEnderecos() {return this.enderecos;}
     public List<Conta> getContas() {return this.contas;}
     public List<ContaCorrente> getContasCorrente() {return this.contasCorrente;}
     public List<ContaPoupança> getContasPoupança() {return this.contasPoupança;}
     public void addConta(Conta conta) {this.contas.add(conta);}
     public void addContaCorrente(ContaCorrente contaCorrente) {this.contasCorrente.add(contaCorrente);}
     public void addContaPoupança(ContaPoupança contaPoupança) {this.contasPoupança.add(contaPoupança);}
+    public void addEndereco(Endereco endereco) {this.enderecos.add(endereco);}
 }
 

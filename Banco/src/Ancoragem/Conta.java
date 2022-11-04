@@ -21,13 +21,11 @@ public abstract class Conta {
         this.Tipo = tipo;
     }
 
-
-
     public double getSaldo() {
         return this.saldo;
     }
 
-    public void setSaldo() {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
@@ -40,4 +38,8 @@ public abstract class Conta {
     }
     public int getIdConta() {return this.idConta;}
 
+    public abstract void trasferir(String cpf, int idConta, List<Cliente> clientes);
+
 }
+
+

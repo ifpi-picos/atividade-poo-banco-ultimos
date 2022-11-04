@@ -1,4 +1,5 @@
 import Ancoragem.Cliente;
+import Ancoragem.Endereco;
 import Ancoragem.ContaCorrente;
 import Ancoragem.ContaPoupança;
 import Ancoragem.Conta;
@@ -25,6 +26,9 @@ public class Banco {
         opcoes.add(2);
         opcoes.add(3);
 
+        contaCarlos();
+        contaArmando();
+
         int opcaoEscolhida = 0;
         while (opcoes.get(opcaoEscolhida) != 3) {
             opcaoEscolhida = mostrarMenu(opcoes);
@@ -37,8 +41,66 @@ public class Banco {
         }
 
     }
+    public static void contaCarlos() throws ParseException {
+
+        Random cIdConta = new Random();
+        int idConta = cIdConta.nextInt(9999);
+        String tipo = "Corrente";
+        String nomeCliente = "Carlos Michael";
+        String cpfCliente = "10020030012";
+        String dataNascimentoCliente = "22012003";
+        SimpleDateFormat formato = new SimpleDateFormat("ddMMyyyy");
+        Date dataFormat = formato.parse(dataNascimentoCliente);
+        int idClienteCliente = numid;
+        String endIdEndereco = cpfCliente;
+        String estadoEndereco = "Pi";
+        String cidadeEndereco = "Picos";
+        String bairroEndereco = "Canto da Várzea";
+        String ruaEndereco = "João Nunes";
+        String numeroEndereco = "314";
+        String cepEndereco = "64600184";
+        String senhaCliente = "Carlos123";
+        Endereco endereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco, endIdEndereco);
+        ContaCorrente pConta = new ContaCorrente(idConta, tipo);
+        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, idClienteCliente, senhaCliente, dataFormat);
+        newCliente.addConta(pConta);
+        newCliente.addContaCorrente(pConta);
+        newCliente.addEndereco(endereco);
+        clientes.add(newCliente);
+        incrementoIdCliente();
+
+    }
+    public static void contaArmando() throws ParseException {
+        Random cIdConta = new Random();
+        int idConta = cIdConta.nextInt(9999);
+        String tipo = "Corrente";
+        String nomeCliente = "Armando";
+        String cpfCliente = "30020010012";
+        String dataNascimentoCliente = "24122003";
+        SimpleDateFormat formato = new SimpleDateFormat("ddMMyyyy");
+        Date dataFormat = formato.parse(dataNascimentoCliente);
+        int idClienteCliente = numid;
+        String endIdEndereco = cpfCliente;
+        String estadoEndereco = "Pi";
+        String cidadeEndereco = "Picos";
+        String bairroEndereco = "Pantanal";
+        String ruaEndereco = "de terra";
+        String numeroEndereco = "255";
+        String cepEndereco = "64600152";
+        String senhaCliente = "Armando123";
+        Endereco endereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco, endIdEndereco);
+        ContaCorrente pConta = new ContaCorrente(idConta, tipo);
+        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, idClienteCliente, senhaCliente, dataFormat);
+        newCliente.addConta(pConta);
+        newCliente.addContaCorrente(pConta);
+        newCliente.addEndereco(endereco);
+        clientes.add(newCliente);
+        incrementoIdCliente();
+    }
+
     // amostragem de menu (automático)
         private static int mostrarMenu(List<Integer> opcoes) {
+
             Object[] optionsArray = opcoes.toArray();
             int opcaoEscolhida = JOptionPane.showOptionDialog(null, "1. cadastrar cliente \n2. Login \n3. finalizar programa \n \n \nOpções:", "Banco -alpha test-", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, optionsArray, null);
             return opcaoEscolhida;
@@ -46,7 +108,7 @@ public class Banco {
     // cadastro de cliente (opção 1)
     private static void cadastrarCliente() throws ParseException {
         Random cIdConta = new Random();
-        int idConta = cIdConta.nextInt(51);
+        int idConta = cIdConta.nextInt(9999);
         String tipo = "Corrente";
         String nomeCliente = JOptionPane.showInputDialog("nome:");
         String cpfCliente = JOptionPane.showInputDialog("cpf:");
@@ -54,18 +116,20 @@ public class Banco {
         SimpleDateFormat formato = new SimpleDateFormat("ddMMyyyy");
         Date dataFormat = formato.parse(dataNascimentoCliente);
         int idClienteCliente = numid;
-        String endIdCliente = cpfCliente;
-        String estadoCliente = JOptionPane.showInputDialog("estado:");
-        String cidadeCliente = JOptionPane.showInputDialog("cidade:");
-        String bairroCliente = JOptionPane.showInputDialog("bairro:");
-        String ruaCliente = JOptionPane.showInputDialog("rua:");
-        String numeroCliente = JOptionPane.showInputDialog("número:");
-        String cepCliente = JOptionPane.showInputDialog("cep:");
+        String endIdEndereco = cpfCliente;
+        String estadoEndereco = JOptionPane.showInputDialog("estado:");
+        String cidadeEndereco = JOptionPane.showInputDialog("cidade:");
+        String bairroEndereco = JOptionPane.showInputDialog("bairro:");
+        String ruaEndereco = JOptionPane.showInputDialog("rua:");
+        String numeroEndereco = JOptionPane.showInputDialog("número:");
+        String cepEndereco = JOptionPane.showInputDialog("cep:");
         String senhaCliente = JOptionPane.showInputDialog("Crie uma senha: ");
+        Endereco endereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco, endIdEndereco);
         ContaCorrente pConta = new ContaCorrente(idConta, tipo);
-        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, idClienteCliente, senhaCliente, cepCliente, numeroCliente, ruaCliente, bairroCliente, cidadeCliente, estadoCliente, endIdCliente, dataFormat);
+        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, idClienteCliente, senhaCliente, dataFormat);
         newCliente.addConta(pConta);
         newCliente.addContaCorrente(pConta);
+        newCliente.addEndereco(endereco);
         clientes.add(newCliente);
         incrementoIdCliente();
         JOptionPane.showMessageDialog(null, "Uma conta corrente foi automaticamente gerada. \n\nId da conta: " + idConta + "\nAgência:      1\nSaldo:           R$0,00\n\n\n");
@@ -95,12 +159,12 @@ public class Banco {
 
                         if (opçãoEscolhida == 0) {
 
-                            if (usercpf.equals(cliente.getEndId())) {
-
-                                String info = "";
-                                info = info + "  -Informações pessoais-\n\nnome: " + cliente.getNome() + "\ncpf:      " + cliente.getCpf() + "\nd/nascimento: " + cliente.getDataNascimento() + "\nid:         " + cliente.getIdCliente() + "\nn.contas corrente:    " + cliente.getContasCorrente().size() + "\nn.contas poupança:  " + cliente.getContasPoupança().size() + "\n\n  -Endereço-\n\nEstado:     " + cliente.getEstado() + "\nCidade:     " + cliente.getCidade() + "\nBairro:      " + cliente.getBairro() + "\nRua:          " + cliente.getRua() + "\nNúmero:  " + cliente.getNumero() + "\nCep:          " + cliente.getCep() + "\n----------------------------------------------\n\n";
-                                JOptionPane.showMessageDialog(null, info, "Informações", JOptionPane.PLAIN_MESSAGE);
-
+                            for (Endereco endereco : cliente.getEnderecos()) {
+                                if (usercpf.equals(endereco.getEndId())) {
+                                    String info = "";
+                                    info = info + "  -Informações pessoais-\n\nnome: " + cliente.getNome() + "\ncpf:      " + cliente.getCpf() + "\nd/nascimento: " + cliente.getDataNascimento() + "\nid:         " + cliente.getIdCliente() + "\nn.contas corrente:    " + cliente.getContasCorrente().size() + "\nn.contas poupança:  " + cliente.getContasPoupança().size() + "\n\n  -Endereço-\n\nEstado:     " + endereco.getEstado() + "\nCidade:     " + endereco.getCidade() + "\nBairro:      " + endereco.getBairro() + "\nRua:          " + endereco.getRua() + "\nNúmero:  " + endereco.getNumero() + "\nCep:          " + endereco.getCep() + "\n----------------------------------------------\n\n";
+                                    JOptionPane.showMessageDialog(null, info, "Informações", JOptionPane.PLAIN_MESSAGE);
+                                }
                             }
                         } else if (opçãoEscolhida == 1) {
                             List<Integer> options = new ArrayList<>();
@@ -116,6 +180,49 @@ public class Banco {
 
                                 if (optionSelected == 0) {
 
+                                    String info = "";
+                                    List<Integer> opcoes = new ArrayList<>();
+
+                                    for (Conta conta : cliente.getContas()) {
+                                        opcoes.add(conta.getIdConta());
+                                        info = info + "\nTipo: " + conta.getTipo() + "  Id: " + conta.getIdConta() + "  saldo: R$" + conta.getSaldo();
+                                    }
+
+                                    java.lang.Object[] acoesConta = opcoes.toArray();
+                                    int contaEscolhida = JOptionPane.showOptionDialog(null,"escolha uma conta: \n" + info + "\n\n", "Contas", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, acoesConta, null);
+                                    int numeroConta = opcoes.get(contaEscolhida);
+
+                                    for (Conta conta : cliente.getContas()) {
+                                        if (numeroConta == conta.getIdConta()) {
+                                            if ("Corrente".equals(conta.getTipo())) {
+
+                                                List<Integer> menuDeAçõesCorrente = new ArrayList<>();
+                                                menuDeAçõesCorrente.add(1);
+                                                menuDeAçõesCorrente.add(2);
+                                                menuDeAçõesCorrente.add(3);
+                                                menuDeAçõesCorrente.add(4);
+
+                                                int itemCorrenteSelecionado = 1;
+                                                while (menuDeAçõesCorrente.get(itemCorrenteSelecionado) != 4) {
+                                                    itemCorrenteSelecionado = menusDeAçõesCorrente(menuDeAçõesCorrente);
+                                                    if (menuDeAçõesCorrente.get(itemCorrenteSelecionado) == 1) {
+                                                        depositar(usercpf, numeroConta);
+                                                    }
+                                                }
+                                            } else if ("Poupança".equals(conta.getTipo())) {
+                                                List<Integer> menuDeAçõesPoupança = new ArrayList<>();
+                                                menuDeAçõesPoupança.add(1);
+                                                menuDeAçõesPoupança.add(2);
+
+                                                int itemPoupançaSelecionado = 0;
+                                                while (menuDeAçõesPoupança.get(itemPoupançaSelecionado) != 2) {
+                                                    itemPoupançaSelecionado = menusDeAçõesPoupança(menuDeAçõesPoupança);
+                                                    if (menuDeAçõesPoupança.get(itemPoupançaSelecionado) == 1) {
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 } else if (optionSelected == 1) {
                                     List<Integer> optione = new ArrayList<>();
 
@@ -129,57 +236,25 @@ public class Banco {
                                         optioneSelected = JOptionPane.showOptionDialog(null,"1. Conta corrente\n2. Conta Poupança\n3. Cancelar criação de conta\n\n","Criação de Conta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, criaçãoContas, null);
 
                                         if (optioneSelected == 0) {
-                                            List<Integer> escolha = new ArrayList<>();
 
-                                            escolha.add(1);
-                                            escolha.add(2);
-
-                                            java.lang.Object[] decisãoFinalCriaçãoConta = escolha.toArray();
-                                            int escolhaTomada = 0;
-                                            while (escolhaTomada != 1) {
-                                                escolhaTomada = JOptionPane.showOptionDialog(null,"Tem certeza que deseja criar uma nova conta corrente?\n\n1. 'Sim, desejo criar uma nova conta corrente!'\n2. 'Não, desejo cancelar a criação de uma nova conta corrente!'\n\n","Finalização de criação", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, decisãoFinalCriaçãoConta, null);
-
-                                                if (escolhaTomada == 0) {
-
-                                                    Random cIdConta = new Random();
-                                                    int idConta = cIdConta.nextInt(51);
-                                                    String tipo = "Corrente";
-                                                    ContaCorrente Conta = new ContaCorrente(idConta, tipo);
-                                                    cliente.addConta(Conta);
-                                                    cliente.addContaCorrente(Conta);
-                                                    JOptionPane.showMessageDialog(null, "Uma nova conta corrente foi adicionada à sua conta!\n\nId da conta: " + idConta + "\nAgência:      1\nSaldo:           R$0,00\n\n\n");
-
-                                                    
-                                                }
-
-                                            }
+                                            Random cIdConta = new Random();
+                                            int idConta = cIdConta.nextInt(9999);
+                                            String tipo = "Corrente";
+                                            ContaCorrente Conta = new ContaCorrente(idConta, tipo);
+                                            cliente.addConta(Conta);
+                                            cliente.addContaCorrente(Conta);
+                                            JOptionPane.showMessageDialog(null, "Uma nova conta corrente foi adicionada à sua conta!\n\nId da conta: " + idConta + "\nAgência:      1\nSaldo:           R$0,00\n\n\n");
 
                                         } else if (optioneSelected == 1) {
 
-                                            List<Integer> escolha = new ArrayList<>();
+                                            Random cIdConta = new Random();
+                                            int idConta = cIdConta.nextInt(9999);
+                                            String tipo = "Poupança";
+                                            ContaPoupança Conta = new ContaPoupança(idConta, tipo);
+                                            cliente.addConta(Conta);
+                                            cliente.addContaPoupança(Conta);
+                                            JOptionPane.showMessageDialog(null, "Uma nova conta poupança foi adicionada à sua conta!\n\nId da conta: " + idConta + "\nAgência:      1\nSaldo:           R$0,00\n\n\n");
 
-                                            escolha.add(1);
-                                            escolha.add(2);
-
-                                            java.lang.Object[] decisãoFinalCriaçãoConta = escolha.toArray();
-                                            int escolhaTomada = 0;
-                                            while (escolhaTomada != 1) {
-                                                escolhaTomada = JOptionPane.showOptionDialog(null,"\nTem certeza que deseja criar uma nova conta poupança?\n\n1. 'Sim, desejo criar uma nova conta poupança!'\n2. 'Não, desejo cancelar a criação de uma nova conta poupança!'\n\n","Finalização de criação", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, decisãoFinalCriaçãoConta, null);
-
-
-                                                if (escolhaTomada == 0) {
-
-                                                    Random cIdConta = new Random();
-                                                    int idConta = cIdConta.nextInt(51);
-                                                    String tipo = "Poupança";
-                                                    ContaPoupança Conta = new ContaPoupança(idConta, tipo);
-                                                    cliente.addConta(Conta);
-                                                    cliente.addContaPoupança(Conta);
-                                                    JOptionPane.showMessageDialog(null, "Uma nova conta poupança foi adicionada à sua conta!\n\nId da conta: " + idConta + "\nAgência:      1\nSaldo:           R$0,00\n\n\n");
-
-                                                }
-
-                                            }
                                         }
                                     }
                                 }
@@ -193,4 +268,26 @@ public class Banco {
             JOptionPane.showMessageDialog(null, "Nenhum cliente cadastrado ainda!\ntende de novo após realizar um cadastro.");
         }
     }
+    public static int menusDeAçõesCorrente(List<Integer> menuDeAçõesCorrente) {
+        java.lang.Object[] menuAçãoCorrente = menuDeAçõesCorrente.toArray();
+        int itemSelecionado = JOptionPane.showOptionDialog(null, "Status de conta:" + "\n\n1.depositar\n2.sacar\n3.transferir\n4.Sair de menu de ação \n\n", "Ações", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuAçãoCorrente, null);
+        return itemSelecionado;
+    }
+    public static int menusDeAçõesPoupança(List<Integer> menuDeAçõesPoupança) {
+        java.lang.Object[] menuAçãoPoupança = menuDeAçõesPoupança.toArray();
+        int itemSelecionado = JOptionPane.showOptionDialog(null, "Status de conta:" + "\n\n1.transferir\n2.Sair de menu de ação \n\n", "Ações", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuAçãoPoupança, null);
+        return itemSelecionado;
+    }
+    public static void depositar(String usercpf, int idConta) {
+        for (Cliente cliente : clientes) {
+            if (usercpf.equals(cliente.getCpf())) {
+                for (Conta conta : cliente.getContas()) {
+                    if (idConta == conta.getIdConta()) {
+                        ContaCorrente.depositar(usercpf, idConta, clientes);
+                    }
+                }
+            }
+        }
+    }
+
 }
