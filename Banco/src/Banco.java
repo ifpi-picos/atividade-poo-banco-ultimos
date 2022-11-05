@@ -28,8 +28,7 @@ public class Banco {
         opcoes.add(2);
         opcoes.add(3);
 
-        contaCarlos();
-        contaArmando();
+        contaTeste();
 
         int opcaoEscolhida = 0;
         while (opcoes.get(opcaoEscolhida) != 3) {
@@ -44,7 +43,7 @@ public class Banco {
 
     }
 
-    public static void contaCarlos() throws ParseException {
+    public static void contaTeste() throws ParseException {
 
         Random cIdConta = new Random();
         int idConta = cIdConta.nextInt(9999);
@@ -74,36 +73,6 @@ public class Banco {
         clientes.add(newCliente);
         incrementoIdCliente();
 
-    }
-
-    public static void contaArmando() throws ParseException {
-        Random cIdConta = new Random();
-        int idConta = cIdConta.nextInt(9999);
-        String tipo = "Corrente";
-        String nomeCliente = "Armando";
-        String cpfCliente = "30020010012";
-        String dataNascimentoCliente = "24122003";
-        SimpleDateFormat formato = new SimpleDateFormat("ddMMyyyy");
-        Date dataFormat = formato.parse(dataNascimentoCliente);
-        int idClienteCliente = numid;
-        String endIdEndereco = cpfCliente;
-        long telefoneCliente = Long.parseLong("8988057258");
-        String emailCliente = "ArmandoPereira@gmail.com";
-        String estadoEndereco = "Pi";
-        String cidadeEndereco = "Picos";
-        String bairroEndereco = "Pantanal";
-        String ruaEndereco = "de terra";
-        String numeroEndereco = "255";
-        String cepEndereco = "64600152";
-        String senhaCliente = "Armando123";
-        Endereco endereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco, endIdEndereco);
-        ContaCorrente pConta = new ContaCorrente(idConta, tipo);
-        Cliente newCliente = new Cliente(nomeCliente, cpfCliente,emailCliente, telefoneCliente, idClienteCliente, senhaCliente, dataFormat);
-        newCliente.addConta(pConta);
-        newCliente.addContaCorrente(pConta);
-        newCliente.addEndereco(endereco);
-        clientes.add(newCliente);
-        incrementoIdCliente();
     }
 
     // amostragem de menu (automático)

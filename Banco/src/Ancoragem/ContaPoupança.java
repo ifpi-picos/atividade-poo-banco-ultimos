@@ -36,19 +36,24 @@ public class ContaPoupança extends Conta{
                                         if (idsContas.contains(desIdCon)) {
                                             for (Conta contts : ccli.getContas()) {
                                                 if (desIdCon == contts.getIdConta()) {
-                                                    conta.setSaldo(conta.getSaldo() - (trans + taxaTransP));
-                                                    JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
+                                                    Double averiguação = trans + taxaTransP;
+                                                    if (conta.getSaldo() - averiguação >= 0) {
+                                                        conta.setSaldo(conta.getSaldo() - (trans + taxaTransP));
+                                                        JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
 
-                                                    contts.setSaldo(contts.getSaldo() + (trans));
-                                                    String e = cliente.getEmail();
-                                                    Long n = cliente.getTelefone();
-                                                    String operacao = "transferência";
-                                                    Email email = new Email();
-                                                    email.sendnotification(operacao, trans,e,n);
-                                                    Sms sms = new Sms();
-                                                    sms.sendnotification(operacao, trans,e,n);
+                                                        contts.setSaldo(contts.getSaldo() + (trans));
+                                                        String e = cliente.getEmail();
+                                                        Long n = cliente.getTelefone();
+                                                        String operacao = "transferência";
+                                                        Email email = new Email();
+                                                        email.sendnotification(operacao, trans, e, n);
+                                                        Sms sms = new Sms();
+                                                        sms.sendnotification(operacao, trans, e, n);
 
-                                                    break;
+                                                        break;
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(null,"Seu saldo (R$" + conta.getSaldo() + ")não é suficiente para realizar a \ntransferência contando com a taxa: " + (averiguação));
+                                                    }
                                                 }
                                             }
                                         } else {
