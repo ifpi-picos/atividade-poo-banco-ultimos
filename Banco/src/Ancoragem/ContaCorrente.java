@@ -55,11 +55,29 @@ public class ContaCorrente extends Conta{
                                                         conta.setNtrans(conta.getNtrans() + 1);
                                                         JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
 
+                                                        contts.setSaldo(contts.getSaldo() + (trans));
+                                                        String e = cliente.getEmail();
+                                                        Long n = cliente.getTelefone();
+                                                        String operacao = "a traferência";
+                                                        Email email = new Email();
+                                                        email.sendnotification(operacao, trans, e, n);
+                                                        Sms sms = new Sms();
+                                                        sms.sendnotification(operacao, trans, e, n);
+
                                                         break;
                                                     } else {
                                                         conta.setSaldo(conta.getSaldo() - trans);
                                                         setNtrans(getNtrans() + 1);
                                                         JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
+
+                                                        contts.setSaldo(contts.getSaldo() + (trans));
+                                                        String e = cliente.getEmail();
+                                                        Long n = cliente.getTelefone();
+                                                        String operacao = "a traferência";
+                                                        Email email = new Email();
+                                                        email.sendnotification(operacao, trans, e, n);
+                                                        Sms sms = new Sms();
+                                                        sms.sendnotification(operacao, trans, e, n);
 
                                                         break;
                                                     }
@@ -98,6 +116,15 @@ public class ContaCorrente extends Conta{
                                                                 conta.setSaldo(conta.getSaldo() + averiguação);
                                                                 JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
 
+                                                                contts.setSaldo(contts.getSaldo() + (trans));
+                                                                String e = cliente.getEmail();
+                                                                Long n = cliente.getTelefone();
+                                                                String operacao = "a traferência";
+                                                                Email email = new Email();
+                                                                email.sendnotification(operacao, trans, e, n);
+                                                                Sms sms = new Sms();
+                                                                sms.sendnotification(operacao, trans, e, n);
+
                                                                 break;
                                                             } else {
                                                                 JOptionPane.showMessageDialog(null, "O valor ultrapassa o saldo junto ao limite do cheque!");
@@ -107,6 +134,15 @@ public class ContaCorrente extends Conta{
                                                                 conta.setSaldo(conta.getSaldo() - (trans + taxaTransC));
                                                                 conta.setChequeEspecial(conta.getChequeEspecial() + averiguação);
                                                                 JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
+
+                                                                contts.setSaldo(contts.getSaldo() + (trans));
+                                                                String e = cliente.getEmail();
+                                                                Long n = cliente.getTelefone();
+                                                                String operacao = "a traferência";
+                                                                Email email = new Email();
+                                                                email.sendnotification(operacao, trans, e, n);
+                                                                Sms sms = new Sms();
+                                                                sms.sendnotification(operacao, trans, e, n);
 
                                                                 break;
                                                             } else {
@@ -121,6 +157,15 @@ public class ContaCorrente extends Conta{
                                                                 conta.setChequeEspecial(conta.getChequeEspecial() + averiguação);
                                                                 JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
 
+                                                                contts.setSaldo(contts.getSaldo() + (trans));
+                                                                String e = cliente.getEmail();
+                                                                Long n = cliente.getTelefone();
+                                                                String operacao = "a traferência";
+                                                                Email email = new Email();
+                                                                email.sendnotification(operacao, trans, e, n);
+                                                                Sms sms = new Sms();
+                                                                sms.sendnotification(operacao, trans, e, n);
+
                                                                 break;
                                                             } else {
                                                                 JOptionPane.showMessageDialog(null, "O valor ultrapassa o saldo da conta com o limite do cheque!");
@@ -130,6 +175,15 @@ public class ContaCorrente extends Conta{
                                                                 conta.setSaldo(conta.getSaldo() - trans);
                                                                 conta.setChequeEspecial(conta.getChequeEspecial() + averiguação);
                                                                 JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
+
+                                                                contts.setSaldo(contts.getSaldo() + (trans));
+                                                                String e = cliente.getEmail();
+                                                                Long n = cliente.getTelefone();
+                                                                String operacao = "a traferência";
+                                                                Email email = new Email();
+                                                                email.sendnotification(operacao, trans, e, n);
+                                                                Sms sms = new Sms();
+                                                                sms.sendnotification(operacao, trans, e, n);
 
                                                                 break;
                                                             } else {
@@ -171,7 +225,15 @@ public class ContaCorrente extends Conta{
                                 if (conta.getChequeEspecial() + conta.getSaldo() >= saque) {
                                     conta.setSaldo(conta.getSaldo() - saque);
                                     conta.setChequeEspecial(conta.getChequeEspecial() + averiguação);
-                                    JOptionPane.showMessageDialog(null, "R$" + saque + "sacado! \nSeu saldo atual é de: R$" + conta.getSaldo() + "\n\n");
+                                    JOptionPane.showMessageDialog(null, "R$" + saque + "sacado! \nSeu saldo atual é de: R$" + conta.getSaldo() + "\nOBS: o cheque especial foi utilizado\n\n");
+
+                                    String e = cliente.getEmail();
+                                    Long n = cliente.getTelefone();
+                                    String operacao = "o saque";
+                                    Email email = new Email();
+                                    email.sendnotification(operacao, saque, e,n);
+                                    Sms sms = new Sms();
+                                    sms.sendnotification(operacao, saque,e,n);
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "O valor ultrapassa o saldo com o limite do cheque!");
@@ -180,7 +242,16 @@ public class ContaCorrente extends Conta{
                                 if (conta.getChequeEspecial() >= saque) {
                                     conta.setSaldo(conta.getSaldo() - saque);
                                     conta.setChequeEspecial(conta.getChequeEspecial() + averiguação);
-                                    JOptionPane.showMessageDialog(null, "R$" + saque + "sacado! \nSeu saldo atual é de: R$" + conta.getSaldo() + "\n\n");
+                                    JOptionPane.showMessageDialog(null, "R$" + saque + "sacado! \nSeu saldo atual é de: R$" + conta.getSaldo() + "\nOBS: o cheque especial foi utilizado\n\n");
+
+                                    String e = cliente.getEmail();
+                                    Long n = cliente.getTelefone();
+                                    String operacao = "o saque";
+                                    Email email = new Email();
+                                    email.sendnotification(operacao, saque, e,n);
+                                    Sms sms = new Sms();
+                                    sms.sendnotification(operacao, saque,e,n);
+
                                 } else {
                                     JOptionPane.showMessageDialog(null, "O valor ultrapassa o limite do cheque!");
                                 }

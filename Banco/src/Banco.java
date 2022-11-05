@@ -56,6 +56,8 @@ public class Banco {
         Date dataFormat = formato.parse(dataNascimentoCliente);
         int idClienteCliente = numid;
         String endIdEndereco = cpfCliente;
+        long telefoneCliente = Long.parseLong("89999774554");
+        String emailCliente = "CarlosMichaelg@gmail.com";
         String estadoEndereco = "Pi";
         String cidadeEndereco = "Picos";
         String bairroEndereco = "Canto da Várzea";
@@ -65,7 +67,7 @@ public class Banco {
         String senhaCliente = "Carlos123";
         Endereco endereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco, endIdEndereco);
         ContaCorrente pConta = new ContaCorrente(idConta, tipo);
-        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, idClienteCliente, senhaCliente, dataFormat);
+        Cliente newCliente = new Cliente(nomeCliente, cpfCliente,emailCliente, telefoneCliente, idClienteCliente, senhaCliente, dataFormat);
         newCliente.addConta(pConta);
         newCliente.addContaCorrente(pConta);
         newCliente.addEndereco(endereco);
@@ -85,6 +87,8 @@ public class Banco {
         Date dataFormat = formato.parse(dataNascimentoCliente);
         int idClienteCliente = numid;
         String endIdEndereco = cpfCliente;
+        long telefoneCliente = Long.parseLong("8988057258");
+        String emailCliente = "ArmandoPereira@gmail.com";
         String estadoEndereco = "Pi";
         String cidadeEndereco = "Picos";
         String bairroEndereco = "Pantanal";
@@ -94,7 +98,7 @@ public class Banco {
         String senhaCliente = "Armando123";
         Endereco endereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco, endIdEndereco);
         ContaCorrente pConta = new ContaCorrente(idConta, tipo);
-        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, idClienteCliente, senhaCliente, dataFormat);
+        Cliente newCliente = new Cliente(nomeCliente, cpfCliente,emailCliente, telefoneCliente, idClienteCliente, senhaCliente, dataFormat);
         newCliente.addConta(pConta);
         newCliente.addContaCorrente(pConta);
         newCliente.addEndereco(endereco);
@@ -122,6 +126,8 @@ public class Banco {
         Date dataFormat = formato.parse(dataNascimentoCliente);
         int idClienteCliente = numid;
         String endIdEndereco = cpfCliente;
+        long telefoneCliente = Long.parseLong(JOptionPane.showInputDialog("Número de telefone:"));
+        String emailCliente = JOptionPane.showInputDialog("Email: ");
         String estadoEndereco = JOptionPane.showInputDialog("estado:");
         String cidadeEndereco = JOptionPane.showInputDialog("cidade:");
         String bairroEndereco = JOptionPane.showInputDialog("bairro:");
@@ -131,7 +137,7 @@ public class Banco {
         String senhaCliente = JOptionPane.showInputDialog("Crie uma senha: ");
         Endereco endereco = new Endereco(cepEndereco, numeroEndereco, ruaEndereco, bairroEndereco, cidadeEndereco, estadoEndereco, endIdEndereco);
         ContaCorrente pConta = new ContaCorrente(idConta, tipo);
-        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, idClienteCliente, senhaCliente, dataFormat);
+        Cliente newCliente = new Cliente(nomeCliente, cpfCliente, emailCliente, telefoneCliente, idClienteCliente, senhaCliente, dataFormat);
         newCliente.addConta(pConta);
         newCliente.addContaCorrente(pConta);
         newCliente.addEndereco(endereco);

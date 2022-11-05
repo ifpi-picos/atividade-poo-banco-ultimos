@@ -39,6 +39,15 @@ public class ContaPoupança extends Conta{
                                                     conta.setSaldo(conta.getSaldo() - (trans + taxaTransP));
                                                     JOptionPane.showMessageDialog(null, "R$" + (trans) + "transferido! \nSeu saldo atual é: R$" + conta.getSaldo() + "\n\n");
 
+                                                    contts.setSaldo(contts.getSaldo() + (trans));
+                                                    String e = cliente.getEmail();
+                                                    Long n = cliente.getTelefone();
+                                                    String operacao = "transferência";
+                                                    Email email = new Email();
+                                                    email.sendnotification(operacao, trans,e,n);
+                                                    Sms sms = new Sms();
+                                                    sms.sendnotification(operacao, trans,e,n);
+
                                                     break;
                                                 }
                                             }
@@ -71,6 +80,13 @@ public class ContaPoupança extends Conta{
                         if (averiguação >= 0) {
                             conta.setSaldo(conta.getSaldo() - saque);
                             JOptionPane.showMessageDialog(null, "R$" + saque + "sacado! \nSeu saldo atual é de: R$" + conta.getSaldo() + "\n\n");
+                            String e = cliente.getEmail();
+                            Long n = cliente.getTelefone();
+                            String operacao = "o saque";
+                            Email email = new Email();
+                            email.sendnotification(operacao, saque,e,n);
+                            Sms sms = new Sms();
+                            sms.sendnotification(operacao, saque,e,n);
                         } else {
                             JOptionPane.showMessageDialog(null, "Saldo insuficiente!");
                         }

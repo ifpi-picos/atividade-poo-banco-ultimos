@@ -7,6 +7,8 @@ public class Cliente {
     private final String CPF;
     private int idCliente;
     private String nome;
+    private String email;
+    private long telefone;
     private Date dataNascimento;
     private String senha;
     private List<Endereco> enderecos = new ArrayList<>();
@@ -15,9 +17,11 @@ public class Cliente {
     private List<ContaPoupança> contasPoupança = new ArrayList<>();
 
     // constructor de Cliente
-    public Cliente(String nome, String cpf, int idCliente, String senha, Date dataNascimento) {
+    public Cliente(String nome, String cpf, String email, long telefone,int idCliente, String senha, Date dataNascimento) {
         this.nome = nome;
         this.CPF = cpf;
+        this.email = email;
+        this.telefone = telefone;
         this.idCliente = idCliente;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
@@ -29,9 +33,9 @@ public class Cliente {
     public String getCpf() {
         return this.CPF;
     }
-    public int getIdCliente() {
-        return this.idCliente;
-    }
+    public String getEmail() {return email;}
+    public long getTelefone() {return telefone;}
+    public int getIdCliente() {return this.idCliente;}
     public void setIdCliente(int idCliente) {this.idCliente = idCliente;}
     public Date getDataNascimento() {return this.dataNascimento;}
     public void setDataNascimento(Date dataNascimento) {this.dataNascimento = dataNascimento;}
