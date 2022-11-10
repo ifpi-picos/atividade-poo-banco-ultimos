@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.Random;
 
 public class Banco {
+
+    public static String usercpf = "";
+    public static int idConta = 0;
     public static int numid = 0;
     // Listas
     static List<Cliente> clientes = new ArrayList<>();
@@ -169,7 +172,7 @@ public class Banco {
                                         info = info + "\nTipo: " + conta.getTipo() + "  Id: " + conta.getIdConta() + "  saldo: R$" + conta.getSaldo();
                                     }
 
-                                    java.lang.Object[] acoesConta = opcoes.toArray();
+                                    Object[] acoesConta = opcoes.toArray();
                                     int contaEscolhida = JOptionPane.showOptionDialog(null, "escolha uma conta: \n" + info + "\n\n", "Contas", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, acoesConta, null);
                                     int numeroConta = opcoes.get(contaEscolhida);
 
@@ -182,9 +185,10 @@ public class Banco {
                                             menuDeAções.add(3);
                                             menuDeAções.add(4);
 
+                                            java.lang.Object[] menuAção = menuDeAções.toArray();
                                             int itemSelecionado = 1;
                                             while (menuDeAções.get(itemSelecionado) != 4) {
-                                                itemSelecionado = menusDeAções(menuDeAções);
+                                                itemSelecionado = JOptionPane.showOptionDialog(null, "Status de conta:\n\nTipo: " + conta.getTipo() + "\nId: " + conta.getIdConta() + "\nsaldo: R$" + conta.getSaldo() + "\n\n1.depositar\n2.sacar\n3.transferir\n4.Sair de menu de ação \n\n", "Ações", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuAção, null);
                                                 if (menuDeAções.get(itemSelecionado) == 1) {
                                                     depositar(usercpf, numeroConta);
                                                 } else if (menuDeAções.get(itemSelecionado) == 2) {
@@ -193,7 +197,6 @@ public class Banco {
                                                     transferir(usercpf, numeroConta);
                                                 }
                                             }
-
                                         }
                                     }
                                 } else if (optionSelected == 1) {
@@ -242,18 +245,12 @@ public class Banco {
         }
     }
 
-    public static int menusDeAções(List<Integer> menuDeAções) {
-        java.lang.Object[] menuAção = menuDeAções.toArray();
-        int itemSelecionado = JOptionPane.showOptionDialog(null, "Status de conta:" + "\n\n1.depositar\n2.sacar\n3.transferir\n4.Sair de menu de ação \n\n", "Ações", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, menuAção, null);
-        return itemSelecionado;
-    }
-
     public static void depositar(String CPF, int idConta) {
         for (Cliente cliente : clientes) {
             if (CPF.equals(cliente.getCpf())) {
                 for (Conta conta : cliente.getContas()) {
                     if (idConta == conta.getIdConta()) {
-                        Conta.depositar(CPF, idConta, clientes);
+                        conta.depositar(CPF, idConta, clientes);
                     }
                 }
             }
@@ -282,30 +279,6 @@ public class Banco {
                 }
             }
 
-        }
-    }
-
-    public static void ainfo(String CPF, int idConta, List<Cliente> clientes) {
-        for (Cliente cliente : clientes) {
-            if (CPF.equals(cliente.getCpf())) {
-                for (Conta conta : cliente.getContas()) {
-                    if (idConta == conta.getIdConta()) {
-                        String info = "\nTipo: " + conta.getTipo() + "  Id: " + conta.getIdConta() + "  saldo: R$" + conta.getSaldo();
-                    }
-
-                }
-            }
-        }
-    }
-    public static void info(String CPF, int idConta) {
-        for (Cliente cliente : clientes) {
-            if (CPF.equals(cliente.getCpf())) {
-                for (Conta conta : cliente.getContas()) {
-                    if (idConta == conta.getIdConta()) {
-                        ainfo(CPF, idConta, clientes);
-                    }
-                }
-            }
         }
     }
 }

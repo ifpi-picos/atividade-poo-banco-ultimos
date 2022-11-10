@@ -42,26 +42,7 @@ public abstract class Conta {
 
     public abstract void sacar(String CPF, int idConta, List<Cliente> clientes);
 
-    public static void depositar(String CPF, int idConta, List<Cliente> clientes) {
-        double deposito = Double.parseDouble(JOptionPane.showInputDialog("Valor de depósito: R$"));
-        for (Cliente cliente : clientes) {
-            if (CPF.equals(cliente.getCpf())) {
-                for (Conta conta : cliente.getContas()) {
-                    if (idConta == conta.getIdConta()) {
-                        conta.setSaldo(conta.getSaldo() + deposito);
-                        JOptionPane.showMessageDialog(null, "R$" + deposito + "  depositado! \nSaldo atual da conta: R$" + conta.getSaldo() + "\n\n");
-                        String e = cliente.getEmail();
-                        Long n = cliente.getTelefone();
-                        String operacao = "deposito";
-                        Email email = new Email();
-                        email.sendnotification(operacao, deposito, e , n);
-                        Sms sms = new Sms();
-                        sms.sendnotification(operacao, deposito, e, n);
-                    }
-                }
-            }
-        }
-    }
+    public abstract void depositar(String CPF, int idConta, List<Cliente> clientes);
     public static void depositarc(String CPF, int idConta, List<Cliente> clientes) {
         double deposito = Double.parseDouble(JOptionPane.showInputDialog("Confirme o valor da transferência: R$"));
         for (Cliente cliente : clientes) {
